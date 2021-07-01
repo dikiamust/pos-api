@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema(
         message: "Please enter a valid email",
       },
     },
-    password: {type: String},
+    password: {type: String, default: "1234"},
     role: {type: String},
   },
   {timestamps: true}

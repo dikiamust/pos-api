@@ -12,6 +12,7 @@ class App {
   }
 
   protected plugin(): void {
+    this.app.use(express.json());
     this.app.use(express.urlencoded({extended: true}));
     mongoDB();
   }

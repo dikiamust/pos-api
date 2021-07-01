@@ -13,10 +13,13 @@ install dependencies untuk develop:
         - npm i @types/nodemon -D
         - npm i @types/express -D
         - npm i @types/mongoose -D
+        - npm i @types/jsonwebtoken -D
 
 install dependencies untuk deploy:
         - npm i express
         - npm i mongoose
+        - npm i bcrypt
+        - npm install jsonwebtoken
 
 - buat file app.ts :
         buka package.json, tambahkan di script : "dev": "ts-node-dev --respawn --pretty app.ts"
