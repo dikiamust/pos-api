@@ -1,19 +1,22 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 class mongoDB {
-  constructor() {}
+  constructor() {
+    dotenv.config();
+  }
 
   public connect(): void {
-    mongoose.connect(
-      "mongodb://localhost/pos-api",
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      },
-      () => {
-        console.log("connected to database");
-      }
-    );
+    const pathURI = process.env.DB_HOST as string;
+    const connectOption = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    };
+    mongoose.connect(pathURI, connectOption, () => {
+      console.log("connected to database");
+    });
   }
 }
 

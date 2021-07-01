@@ -1,10 +1,10 @@
 import {Request, Response, NextFunction} from "express";
 import {User} from "../models/UserModel";
 import bcrypt from "bcrypt";
-import * as jwt from "jsonwebtoken";
 
 class ownerController {
   static async addEmployee(req: Request, res: Response, next: NextFunction) {
+    const selectRole = req.body.role;
     try {
       if (!req.body.email) {
         throw {name: "REQUIRED"};
@@ -15,24 +15,23 @@ class ownerController {
         throw {name: "DUPLICATE_EMAIL"};
       }
 
-      const addEmployee: any = await User.create({
-        username: req.body.username,
-        email: req.body.email,
-        password: bcrypt.hashSync(req.body.password, 8),
-        role: req.body.role,
-      });
       if (
-        addEmployee.role === "inventory" ||
-        addEmployee.role === "finance" ||
-        addEmployee.role === "cashier"
+        selectRole === "inventory" ||
+        selectRole === "cashier" ||
+        selectRole === "finance"
       ) {
+        const addEmployee: any = await User.create({
+          username: req.body.username,
+          email: req.body.email,
+          password: bcrypt.hashSync(req.body.password, 8),
+          role: selectRole,
+        });
         res.status(201).json({
           success: true,
           message: "Employee was added successfully!",
           data: addEmployee,
         });
       } else {
-        console.log(addEmployee.role);
         throw {name: "FAILED_REGISTER"};
       }
     } catch (err) {

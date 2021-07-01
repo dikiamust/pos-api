@@ -1,5 +1,6 @@
 import {Router, Request, Response} from "express";
 import ownerRouter from "./ownerRouter";
+import userRouter from "./userRouter";
 import errorHandler from "../middlewares/errorHandler";
 
 class Routes {
@@ -8,6 +9,7 @@ class Routes {
     this.router = Router();
     this.routes();
     this.ownerRouter();
+    this.userRouter();
     this.errorHandler();
   }
 
@@ -19,6 +21,10 @@ class Routes {
 
   public ownerRouter(): void {
     this.router.use(ownerRouter);
+  }
+
+  public userRouter(): void {
+    this.router.use(userRouter);
   }
 
   public errorHandler(): void {

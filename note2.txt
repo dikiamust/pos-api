@@ -19,7 +19,8 @@ install dependencies untuk deploy:
         - npm i express
         - npm i mongoose
         - npm i bcrypt
-        - npm install jsonwebtoken
+        - npm i jsonwebtoken
+        - npm i dotenv
 
 - buat file app.ts :
         buka package.json, tambahkan di script : "dev": "ts-node-dev --respawn --pretty app.ts"

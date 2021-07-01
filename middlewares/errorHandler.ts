@@ -26,6 +26,11 @@ export default function errorHandler(
       message = "failed to register!";
       break;
 
+    case "FALSE_LOGIN":
+      code = 401;
+      message = "email or password invalid!";
+      break;
+
     default:
       code = 500;
       message = " internal server error!";
