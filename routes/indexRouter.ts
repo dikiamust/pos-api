@@ -2,14 +2,16 @@ import {Router, Request, Response} from "express";
 import ownerRouter from "./ownerRouter";
 import userRouter from "./userRouter";
 import errorHandler from "../middlewares/errorHandler";
+import authJwt from "../middlewares/authJwt";
 
 class Routes {
   router: Router;
   constructor() {
     this.router = Router();
     this.routes();
-    this.ownerRouter();
     this.userRouter();
+    this.authJwt();
+    this.ownerRouter();
     this.errorHandler();
   }
 
@@ -19,12 +21,16 @@ class Routes {
     });
   }
 
-  public ownerRouter(): void {
-    this.router.use(ownerRouter);
-  }
-
   public userRouter(): void {
     this.router.use(userRouter);
+  }
+
+  public authJwt(): void {
+    this.router.use(authJwt.authentication);
+  }
+
+  public ownerRouter(): void {
+    this.router.use(ownerRouter);
   }
 
   public errorHandler(): void {

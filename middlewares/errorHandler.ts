@@ -31,6 +31,11 @@ export default function errorHandler(
       message = "email or password invalid!";
       break;
 
+    case "NOT_AUTHENTICATED":
+      code = 401;
+      message = "Missing access_token";
+      break;
+
     default:
       code = 500;
       message = " internal server error!";

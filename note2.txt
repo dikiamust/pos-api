@@ -33,7 +33,8 @@ install dependencies untuk deploy:
 - buat controller
 - buat middleware
 
------------------------------------------------------------
-video : menit 30, connected to DB
+
+
 -----------------------------------------------------------
 "build":"rm -rf build/ && prettier --write source/ && tsc",
+-----------------------------------------------------------
