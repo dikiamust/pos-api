@@ -1,0 +1,35 @@
+- npm init --y
+- tsc --init 
+        buka file tsconfig.json, edit target dari es5 ke ES2017,
+        buat nama direktory untuk javascript di "outDir": "./", 
+        edit "strictNullChecks" menjadi false, 
+        tambahkan   "skipLibCheck": true di baris kedua sebelum terakhir.
+
+dependencies dibagi 2, untuk develop & deploy
+
+install dependencies untuk develop:
+        - npm i @types/typescript -D
+        - npm i @types/ts-node-dev -D
+        - npm i @types/nodemon -D
+        - npm i @types/express -D
+        - npm i @types/mongoose -D
+
+install dependencies untuk deploy:
+        - npm i express
+        - npm i mongoose
+
+- buat file app.ts :
+        buka package.json, tambahkan di script : "dev": "ts-node-dev --respawn --pretty app.ts"
+        test dengan : npm run dev
+
+
+- buat routing
+- buat file congiguration ke database
+- buat model
+- buat controller
+- buat middleware
+
+-----------------------------------------------------------
+video : menit 30, connected to DB
+-----------------------------------------------------------
+"build":"rm -rf build/ && prettier --write source/ && tsc",
