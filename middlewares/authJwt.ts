@@ -7,7 +7,7 @@ class authJwt {
     try {
       const access_token: any = await req.headers.access_token;
       if (!access_token) {
-        throw {name: "NOT_AUTHENTICATED"};
+        throw {name: "UNAUTHENTICATED"};
       }
       const key: string = process.env.SECRETKEY as string;
       jwt.verify(access_token, key, (err: any, decoded: any) => {
@@ -37,12 +37,36 @@ class authJwt {
 
     try {
       if (role !== "owner") {
-        throw {name: "NOT_AUTHORIZED"};
+        throw {name: "UNAUTHORIZED"};
       }
       if (searchOwner.id.toString() !== ownerID) {
-        throw {name: "NOT_AUTHORIZED"};
+        throw {name: "UNAUTHORIZED"};
       } else {
         next();
+      }
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async inventoryAuthorization(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    const inventoryID = req.params.inventoryId;
+    const inventoryId: string = (<any>req).userID;
+    const role: string = (<any>req).userRole;
+    const searchInventory: any = await User.findById(inventoryId);
+
+    try {
+      if (searchInventory.id.toString() !== inventoryID) {
+        throw {name: "UNAUTHORIZED"};
+      }
+      if (role === "owner" || role === "inventory") {
+        next();
+      } else {
+        throw {name: "UNAUTHORIZED"};
       }
     } catch (err) {
       next(err);

@@ -31,14 +31,19 @@ export default function errorHandler(
       message = "email or password invalid!";
       break;
 
-    case "NOT_AUTHENTICATED":
+    case "UNAUTHENTICATED":
       code = 401;
       message = "Missing access_token";
       break;
 
-    case "NOT_AUTHORIZED":
+    case "UNAUTHORIZED":
       code = 401;
       message = "Forbidden access";
+      break;
+
+    case "SUPPLIER_EXIST":
+      code = 409;
+      message = "Supplier already exist!";
       break;
 
     default:

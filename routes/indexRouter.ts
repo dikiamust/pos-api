@@ -1,6 +1,7 @@
 import {Router, Request, Response} from "express";
 import ownerRouter from "./ownerRouter";
 import authRouter from "./authRouter";
+import inventoryRouter from "./inventoryRouter";
 import errorHandler from "../middlewares/errorHandler";
 import authJwt from "../middlewares/authJwt";
 
@@ -12,6 +13,7 @@ class Routes {
     this.authRouter();
     this.authJwt();
     this.ownerRouter();
+    this.inventoryRouter();
     this.errorHandler();
   }
 
@@ -31,6 +33,10 @@ class Routes {
 
   public ownerRouter(): void {
     this.router.use(ownerRouter);
+  }
+
+  public inventoryRouter(): void {
+    this.router.use(inventoryRouter);
   }
 
   public errorHandler(): void {
