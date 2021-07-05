@@ -1,6 +1,6 @@
 import {Router, Request, Response} from "express";
 import ownerRouter from "./ownerRouter";
-import userRouter from "./userRouter";
+import authRouter from "./authRouter";
 import errorHandler from "../middlewares/errorHandler";
 import authJwt from "../middlewares/authJwt";
 
@@ -9,7 +9,7 @@ class Routes {
   constructor() {
     this.router = Router();
     this.routes();
-    this.userRouter();
+    this.authRouter();
     this.authJwt();
     this.ownerRouter();
     this.errorHandler();
@@ -21,8 +21,8 @@ class Routes {
     });
   }
 
-  public userRouter(): void {
-    this.router.use(userRouter);
+  public authRouter(): void {
+    this.router.use(authRouter);
   }
 
   public authJwt(): void {

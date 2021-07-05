@@ -1,5 +1,6 @@
 import {Request, Response, NextFunction} from "express";
 import jwt from "jsonwebtoken";
+import {User} from "../models/UserModel";
 
 class authJwt {
   static async authentication(req: Request, res: Response, next: NextFunction) {
@@ -16,8 +17,33 @@ class authJwt {
             .json({message: "Invalid access_token", success: false, data: err});
         }
         (<any>req).userID = decoded.id;
+        (<any>req).userRole = decoded.role;
         next();
       });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async ownerAuthorization(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    const ownerID = req.params.ownerId;
+    const ownerId: string = (<any>req).userID;
+    const role: string = (<any>req).userRole;
+    const searchOwner: any = await User.findById(ownerId);
+
+    try {
+      if (role !== "owner") {
+        throw {name: "NOT_AUTHORIZED"};
+      }
+      if (searchOwner.id.toString() !== ownerID) {
+        throw {name: "NOT_AUTHORIZED"};
+      } else {
+        next();
+      }
     } catch (err) {
       next(err);
     }

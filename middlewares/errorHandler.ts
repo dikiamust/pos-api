@@ -36,6 +36,11 @@ export default function errorHandler(
       message = "Missing access_token";
       break;
 
+    case "NOT_AUTHORIZED":
+      code = 401;
+      message = "Forbidden access";
+      break;
+
     default:
       code = 500;
       message = " internal server error!";

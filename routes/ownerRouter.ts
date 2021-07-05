@@ -1,5 +1,6 @@
 import {Router} from "express";
 import ownerController from "../controllers/ownerController";
+import authJwt from "../middlewares/authJwt";
 
 class ownerRouter {
   router: Router;
@@ -10,7 +11,11 @@ class ownerRouter {
   }
 
   public addEmployee(): void {
-    this.router.post("/employees", ownerController.addEmployee);
+    this.router.post(
+      "/employees/:ownerId",
+      authJwt.ownerAuthorization,
+      ownerController.addEmployee
+    );
   }
 }
 
