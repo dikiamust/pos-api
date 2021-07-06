@@ -91,6 +91,36 @@ class inventoryController {
       next(err);
     }
   }
+
+  static async editProduct(req: Request, res: Response, next: NextFunction) {
+    const {productName, image, status, barcode} = req.body;
+    const updateData: any = {productName, image, status, barcode};
+    for (const key in updateData) {
+      if (!updateData[key]) {
+        delete updateData[key];
+      }
+    }
+
+    try {
+      if (Object.keys(updateData).length === 0) {
+        throw {name: "NOT_EDITED"};
+      } else {
+        const editProduct = await Product.findByIdAndUpdate(
+          req.params.productId,
+          updateData,
+          {new: true}
+        );
+
+        res.status(200).json({
+          success: true,
+          message: "Product was updated successfully!",
+          data: editProduct,
+        });
+      }
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default inventoryController;

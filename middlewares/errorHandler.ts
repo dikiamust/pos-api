@@ -56,9 +56,14 @@ export default function errorHandler(
       message = "Product not found!";
       break;
 
+    case "NOT_EDITED":
+      code = 400;
+      message = "Edit failed!";
+      break;
+
     default:
       code = 500;
-      message = " internal server error!";
+      message = "Internal server error!";
   }
 
   res.status(code).json({success: false, message});

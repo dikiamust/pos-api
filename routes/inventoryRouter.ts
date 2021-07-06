@@ -10,6 +10,7 @@ class inventoryRouter {
     this.addSupplier();
     this.addProduct();
     this.showAllProducts();
+    this.editProduct();
   }
 
   public addSupplier(): void {
@@ -33,6 +34,14 @@ class inventoryRouter {
       "/products/:inventoryId",
       authJwt.inventoryAuthorization,
       inventoryController.showAllProducts
+    );
+  }
+
+  public editProduct(): void {
+    this.router.put(
+      "/products/:productId/:inventoryId",
+      inventoryController.editProduct,
+      inventoryController.editProduct
     );
   }
 }
