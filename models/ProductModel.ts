@@ -34,13 +34,13 @@ const productSchema = new mongoose.Schema(
   {
     productName: {type: String, required: true},
     productBrand: {type: String, required: true},
-    stock: {type: Number, required: true},
+    stock: {type: Number, default: 0},
     image: {type: Buffer, required: true},
     purchasePrice: {type: Number, required: true},
     sellingPrice: {type: Number, required: true},
     UOM: {type: String, required: true},
-    barcode: {type: String, required: true},
-    supplier: {type: mongoose.Types.ObjectId, ref: "Supplier", required: true},
+    barcode: {type: String, required: true, unique: true},
+    supplier: {type: mongoose.Types.ObjectId, ref: "Supplier"},
     status: {type: String, default: "inactive"},
   },
   {timestamps: true}

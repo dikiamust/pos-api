@@ -43,7 +43,12 @@ export default function errorHandler(
 
     case "SUPPLIER_EXIST":
       code = 409;
-      message = "Supplier already exist!";
+      message = "Supplier or contact already exist!";
+      break;
+
+    case "NO_SUPPLIER":
+      code = 404;
+      message = "Supplier doesn't exist! ";
       break;
 
     default:

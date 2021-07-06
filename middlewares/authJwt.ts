@@ -12,9 +12,10 @@ class authJwt {
       const key: string = process.env.SECRETKEY as string;
       jwt.verify(access_token, key, (err: any, decoded: any) => {
         if (err) {
-          res
-            .status(401)
-            .json({message: "Invalid access_token", success: false, data: err});
+          // res
+          //   .status(401)
+          //   .json({message: "Invalid access_token", success: false, data: err});
+          throw {name: "UNAUTHENTICATED"};
         }
         (<any>req).userID = decoded.id;
         (<any>req).userRole = decoded.role;

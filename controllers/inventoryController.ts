@@ -1,5 +1,6 @@
 import {Request, Response, NextFunction} from "express";
 import {Supplier} from "../models/SupplierModel";
+import {Product} from "../models/ProductModel";
 
 class inventoryController {
   static async addSupplier(req: Request, res: Response, next: NextFunction) {
@@ -31,6 +32,41 @@ class inventoryController {
         });
       }
     } catch (err) {
+      next(err);
+    }
+  }
+
+  static async addProduct(req: Request, res: Response, next: NextFunction) {
+    try {
+      const supplier: any = await Supplier.findOne({
+        supplierName: req.body.supplier,
+      });
+      if (!supplier) {
+        throw {name: "NO_SUPPLIER"};
+      }
+
+      const addProduct: any = await Product.create({
+        productName: req.body.productName,
+        productBrand: req.body.productBrand,
+        image: req.body.image,
+        purchasePrice: req.body.purchasePrice,
+        sellingPrice: req.body.sellingPrice,
+        UOM: req.body.UOM,
+        barcode: req.body.barcode,
+        supplier: supplier,
+      });
+
+      if (!addProduct) {
+        throw {name: "FAILED_REGISTER"};
+      } else {
+        res.status(201).json({
+          success: true,
+          message: "Product was added succesfully!",
+          data: addProduct,
+        });
+      }
+    } catch (err) {
+      console.log("masuk error " + err);
       next(err);
     }
   }

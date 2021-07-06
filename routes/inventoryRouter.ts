@@ -8,6 +8,7 @@ class inventoryRouter {
   constructor() {
     this.router = Router();
     this.addSupplier();
+    this.addProduct();
   }
 
   public addSupplier(): void {
@@ -16,6 +17,10 @@ class inventoryRouter {
       authJwt.inventoryAuthorization,
       inventoryController.addSupplier
     );
+  }
+
+  public addProduct(): void {
+    this.router.post("/products/add", inventoryController.addProduct);
   }
 }
 
