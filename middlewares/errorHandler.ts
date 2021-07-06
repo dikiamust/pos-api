@@ -47,8 +47,13 @@ export default function errorHandler(
       break;
 
     case "NO_SUPPLIER":
-      code = 404;
+      code = 204;
       message = "Supplier doesn't exist! ";
+      break;
+
+    case "NO_PODUCT":
+      code = 204;
+      message = "Product not found!";
       break;
 
     default:

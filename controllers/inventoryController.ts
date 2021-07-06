@@ -70,6 +70,27 @@ class inventoryController {
       next(err);
     }
   }
+
+  static async showAllProducts(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const showAllProducts = await Product.find();
+      if (showAllProducts.length < 0) {
+        throw {name: "NO_PRODUCT"};
+      } else {
+        res.status(200).json({
+          success: true,
+          message: "All products displayed succesfully!",
+          data: showAllProducts,
+        });
+      }
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default inventoryController;

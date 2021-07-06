@@ -9,6 +9,7 @@ class inventoryRouter {
     this.router = Router();
     this.addSupplier();
     this.addProduct();
+    this.showAllProducts();
   }
 
   public addSupplier(): void {
@@ -20,7 +21,19 @@ class inventoryRouter {
   }
 
   public addProduct(): void {
-    this.router.post("/products/add", inventoryController.addProduct);
+    this.router.post(
+      "/products/:inventoryId",
+      authJwt.inventoryAuthorization,
+      inventoryController.addProduct
+    );
+  }
+
+  public showAllProducts(): void {
+    this.router.get(
+      "/products/:inventoryId",
+      authJwt.inventoryAuthorization,
+      inventoryController.showAllProducts
+    );
   }
 }
 
