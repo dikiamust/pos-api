@@ -15,6 +15,7 @@ class authJwt {
           // res
           //   .status(401)
           //   .json({message: "Invalid access_token", success: false, data: err});
+
           throw {name: "UNAUTHENTICATED"};
         }
         (<any>req).userID = decoded.id;

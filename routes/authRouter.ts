@@ -7,10 +7,20 @@ class authRouter {
   constructor() {
     this.router = Router();
     this.login();
+    this.forgetPassword();
+    this.changePassword();
   }
 
   public login(): void {
     this.router.post("/users", authController.login);
+  }
+
+  public forgetPassword(): void {
+    this.router.post("/forgetPassword", authController.forgetPassword);
+  }
+
+  public changePassword(): void {
+    this.router.put("/password/:userId/reset", authController.resetPassword);
   }
 }
 

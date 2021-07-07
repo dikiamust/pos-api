@@ -51,7 +51,7 @@ export default function errorHandler(
       message = "Supplier doesn't exist! ";
       break;
 
-    case "NO_PODUCT":
+    case "NO_PRODUCT":
       code = 204;
       message = "Product not found!";
       break;
@@ -59,6 +59,25 @@ export default function errorHandler(
     case "NOT_EDITED":
       code = 400;
       message = "Edit failed!";
+      break;
+
+    case "NULL_EMAIL":
+      code = 422;
+      message = "Email required or email does not registered yet!";
+
+    case "NULL_PASS":
+      code = 422;
+      message = "New password required!";
+      break;
+
+    case "NULL_ID":
+      code = 422;
+      message = "User ID not found!";
+      break;
+
+    case "NULL_TOKEN":
+      code = 422;
+      message = "Token not found or expired!";
       break;
 
     default:
