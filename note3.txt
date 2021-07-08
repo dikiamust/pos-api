@@ -1,3 +1,6 @@
 git remote add origin https://github.com/dikiamust/pos-api.git
 git branch -M master
 git push -u origin master
+
+
+ts-node-dev --respawn --pretty server.ts

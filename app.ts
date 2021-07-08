@@ -29,7 +29,7 @@ class App {
         "Origin, X-Requested-With, Content-Type, Accept, Authorization"
       );
       res.setHeader(
-        "Access-COntrol-Allow-Methods",
+        "Access-Control-Allow-Methods",
         "GET, POST, PATCH, PUT, DELETE, OPTIONS"
       );
       next();

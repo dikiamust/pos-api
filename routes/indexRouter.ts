@@ -19,7 +19,7 @@ class Routes {
 
   public routes(): void {
     this.router.get("/", (req: Request, res: Response) => {
-      res.send("success routes!");
+      res.status(200).json({message: "Wellcome to My PoS Software API!"});
     });
   }
 
