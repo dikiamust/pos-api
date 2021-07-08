@@ -61,7 +61,7 @@ class authController {
         from: "'Owner Store8' <no-reply@gmail.com>",
         to: reqEmail.email,
         subject: ` Change Password Link `,
-        html: `<p> To change your account's password, please click the link below </p><a href="${process.env.CLIENT_URL}password/${reqEmail.id}/reset?token=${token}" target="_blank">${process.env.CLIENT_URL}password/${reqEmail.id}/reset?token=${token}</a>`,
+        html: `<p> To change your account's password, please click the link below </p><a href="${process.env.CLIENT_URL}auth/password/${reqEmail.id}/reset?token=${token}" target="_blank">${process.env.CLIENT_URL}auth/password/${reqEmail.id}/reset?token=${token}</a>`,
       };
 
       const sendMail = transporter.sendMail(

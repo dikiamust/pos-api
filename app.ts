@@ -2,12 +2,16 @@ import {Application} from "express";
 import express from "express";
 import Routes from "./routes/indexRouter";
 import mongoDB from "./configs/db";
+import dotenv from "dotenv";
+import cors from "cors";
 
 class App {
   public app: Application;
   constructor() {
+    dotenv.config();
     this.app = express();
     this.plugin();
+    this.cors();
     this.route();
   }
 
@@ -17,13 +21,25 @@ class App {
     mongoDB();
   }
 
+  protected cors(): void {
+    this.app.use((req, res, next) => {
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+      );
+      res.setHeader(
+        "Access-COntrol-Allow-Methods",
+        "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+      );
+      next();
+    });
+    this.app.use(cors());
+  }
+
   protected route(): void {
     this.app.use(Routes);
   }
 }
 
-const port = 3010;
-const app = new App().app;
-app.listen(port, () => {
-  console.log(`Server run on http://localhost:${port}`);
-});
+export default new App().app;

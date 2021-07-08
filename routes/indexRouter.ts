@@ -24,7 +24,7 @@ class Routes {
   }
 
   public authRouter(): void {
-    this.router.use(authRouter);
+    this.router.use("/auth", authRouter);
   }
 
   public authJwt(): void {
@@ -32,11 +32,11 @@ class Routes {
   }
 
   public ownerRouter(): void {
-    this.router.use(ownerRouter);
+    this.router.use("/owner", ownerRouter);
   }
 
   public inventoryRouter(): void {
-    this.router.use(inventoryRouter);
+    this.router.use("/inventory", inventoryRouter);
   }
 
   public errorHandler(): void {

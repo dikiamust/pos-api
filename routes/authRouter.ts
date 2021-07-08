@@ -12,7 +12,7 @@ class authRouter {
   }
 
   public login(): void {
-    this.router.post("/users", authController.login);
+    this.router.post("/login", authController.login);
   }
 
   public forgetPassword(): void {

@@ -15,6 +15,7 @@ install dependencies untuk develop:
         - npm i @types/mongoose -D
         - npm i @types/jsonwebtoken -D
         - npm i @types/nodemailer -D
+        - npm i @types/cors -D
 
 install dependencies untuk deploy:
         - npm i express
@@ -23,6 +24,7 @@ install dependencies untuk deploy:
         - npm i jsonwebtoken
         - npm i dotenv
         - npm i nodemailer
+        - npm i cors
 
 - buat file app.ts :
         buka package.json, tambahkan di script : "dev": "ts-node-dev --respawn --pretty app.ts"

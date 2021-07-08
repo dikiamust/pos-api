@@ -81,10 +81,12 @@ class inventoryController {
       if (showAllProducts.length < 0) {
         throw {name: "NO_PRODUCT"};
       } else {
+        let totalProducts = showAllProducts.length;
         res.status(200).json({
           success: true,
           message: "All products displayed succesfully!",
           data: showAllProducts,
+          totalProducts,
         });
       }
     } catch (err) {
