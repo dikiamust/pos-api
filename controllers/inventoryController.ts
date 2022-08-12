@@ -66,7 +66,6 @@ class inventoryController {
         });
       }
     } catch (err) {
-      console.log("masuk error " + err);
       next(err);
     }
   }
